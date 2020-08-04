@@ -1,3 +1,4 @@
+
 class HashTableEntry:
     """
     Linked List hash table key/value pair
@@ -22,7 +23,9 @@ class HashTable:
 
     def __init__(self, capacity):
         # Your code here
-
+        self.capacity = capacity
+        self.data = [None] * capacity
+        self.count = 0
 
     def get_num_slots(self):
         """
@@ -35,7 +38,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
-
+        return self.capacity
 
     def get_load_factor(self):
         """
@@ -44,6 +47,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        self.count / capacity 
 
 
     def fnv1(self, key):
@@ -63,7 +67,10 @@ class HashTable:
         Implement this, and/or FNV-1.
         """
         # Your code here
-
+        hashvar = 5381
+        for c in key:
+            hashvar = (hashvar * 33) + ord(c)
+        return hashvar
 
     def hash_index(self, key):
         """
@@ -82,7 +89,8 @@ class HashTable:
         Implement this.
         """
         # Your code here
-
+        index = self.hash_index(key)
+        self.data[index] = HashTableEntry(key,value)
 
     def delete(self, key):
         """
@@ -93,7 +101,10 @@ class HashTable:
         Implement this.
         """
         # Your code here
-
+        if self.data[self.hash_index(key)] is None:
+            print('key not found')
+        else:
+            self.data[self.hash_index(key)] = None
 
     def get(self, key):
         """
@@ -104,7 +115,10 @@ class HashTable:
         Implement this.
         """
         # Your code here
-
+        index = self.hash_index(key)
+        if self.data[index] is not None:
+            return self.data[index].value
+        return None
 
     def resize(self, new_capacity):
         """
@@ -114,6 +128,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
+
 
 
 
